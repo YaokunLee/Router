@@ -6,11 +6,14 @@ import com.android.build.gradle.AppPlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import groovy.json.JsonSlurper
+import org.gradle.api.artifacts.transform.TransformAction
 
 class RouterPlugin implements Plugin<Project> {
 
     // 实现apply方法，注入插件的逻辑
     void apply(Project project) {
+
+
 
         // 注册 Transform
         if (project.plugins.hasPlugin(AppPlugin)) {

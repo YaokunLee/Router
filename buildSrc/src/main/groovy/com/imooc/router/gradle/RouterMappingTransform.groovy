@@ -6,7 +6,6 @@ import com.android.build.api.transform.Transform
 import com.android.build.api.transform.TransformException
 import com.android.build.api.transform.TransformInvocation
 import com.android.build.gradle.internal.pipeline.TransformManager
-import com.android.utils.FileUtils
 
 import java.util.jar.JarOutputStream
 import java.util.zip.ZipEntry
@@ -79,7 +78,8 @@ class RouterMappingTransform extends Transform {
                                         directoryInput.scopes,
                                         Format.DIRECTORY)
                 collector.collect(directoryInput.file)
-                FileUtils.copyDirectory(directoryInput.file, destDir)
+
+                com.imooc.router.gradle.FileUtils.copyFolder(directoryInput.file.absolutePath, destDir.absolutePath)
             }
 
             // 把 JAR 类型的输入，拷贝到目标目录
@@ -90,7 +90,7 @@ class RouterMappingTransform extends Transform {
                                       jarInput.contentTypes,
                                       jarInput.scopes, Format.JAR)
                 collector.collectFromJarFile(jarInput.file)
-                FileUtils.copyFile(jarInput.file, dest)
+                com.imooc.router.gradle.FileUtils.copyFile(jarInput.file, dest)
             }
         }
 
