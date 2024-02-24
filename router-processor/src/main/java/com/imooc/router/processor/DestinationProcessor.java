@@ -26,7 +26,7 @@ public class DestinationProcessor extends AbstractProcessor {
     private static final String TAG = "DestinationProcessor";
 
     /**
-     * 编译器找到我们关心的注解后，会回调这个方法
+     *
      * @param set
      * @param roundEnvironment
      * @return
@@ -35,7 +35,7 @@ public class DestinationProcessor extends AbstractProcessor {
     public boolean process(Set<? extends TypeElement> set,
                            RoundEnvironment roundEnvironment) {
 
-        // 避免多次调用 process
+
         if (roundEnvironment.processingOver()) {
             return false;
         }
@@ -44,19 +44,19 @@ public class DestinationProcessor extends AbstractProcessor {
 
         String rootDir = processingEnv.getOptions().get("root_project_dir");
 
-        // 获取所有标记了 @Destination 注解的 类的信息
+
         Set<Element> allDestinationElements = (Set<Element>)
                 roundEnvironment.getElementsAnnotatedWith(Destination.class);
 
         System.out.println(TAG + " >>> all Destination elements count = "
                 + allDestinationElements.size());
 
-        // 当未收集到 @Destination 注解的时候，跳过后续流程
+
         if (allDestinationElements.size() < 1) {
             return false;
         }
 
-        // 将要自动生成的类的类名
+
         String className = "RouterMapping_" + System.currentTimeMillis();
 
         StringBuilder builder = new StringBuilder();
@@ -70,12 +70,12 @@ public class DestinationProcessor extends AbstractProcessor {
 
         final JsonArray destinationJsonArray = new JsonArray();
 
-        // 遍历所有 @Destination 注解信息，挨个获取详细信息
+
         for (Element element : allDestinationElements) {
 
             final TypeElement typeElement = (TypeElement) element;
 
-            // 尝试在当前类上，获取 @Destination 的信息
+
             final Destination destination =
                     typeElement.getAnnotation(Destination.class);
 
@@ -117,7 +117,7 @@ public class DestinationProcessor extends AbstractProcessor {
 
         System.out.println(TAG + " >>> class content = \n" + builder);
 
-        // 写入自动生成的类到本地文件中
+
         try {
             JavaFileObject source = processingEnv.getFiler()
                     .createSourceFile(mappingFullClassName);
@@ -129,15 +129,13 @@ public class DestinationProcessor extends AbstractProcessor {
             throw new RuntimeException("Error while create file", ex);
         }
 
-        // 写入JSON到本地文件中
 
-        // 检测父目录是否存在
         File rootDirFile = new File(rootDir);
         if (!rootDirFile.exists()) {
             throw new RuntimeException("root_project_dir not exist!");
         }
 
-        // 创建 router_mapping 子目录
+
         File routerFileDir = new File(rootDirFile, "router_mapping");
         if (!routerFileDir.exists()) {
             routerFileDir.mkdir();
@@ -146,7 +144,7 @@ public class DestinationProcessor extends AbstractProcessor {
         File mappingFile = new File(routerFileDir,
                 "mapping_" + System.currentTimeMillis() + ".json");
 
-        // 写入json内容
+
         try {
             BufferedWriter out = new BufferedWriter(new FileWriter(mappingFile));
             String jsonStr = destinationJsonArray.toString();
@@ -163,7 +161,7 @@ public class DestinationProcessor extends AbstractProcessor {
     }
 
     /**
-     * 告诉编译器，当前处理器支持的注解类型
+     *
      * @return
      */
     @Override
