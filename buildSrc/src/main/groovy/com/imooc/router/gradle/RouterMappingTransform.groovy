@@ -78,7 +78,7 @@ class RouterMappingTransform extends Transform {
                                         directoryInput.scopes,
                                         Format.DIRECTORY)
                 collector.collect(directoryInput.file)
-
+                println("destDir: " + destDir)
                 com.imooc.router.gradle.FileUtils.copyFolder(directoryInput.file.absolutePath, destDir.absolutePath)
             }
 

@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.imooc.gradle.sample.test" >
+
+    <application>
+
+        <activity android:name=".ReadingActivity2"
+            android:exported="true"/>
+    </application>
+
+</manifest>

@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Router.INSTANCE.go(v.getContext(),
-                        "router://imooc/profile");
+                        "router://imooc/profile?name=imooc&message=hello");
             }
         });
     }

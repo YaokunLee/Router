@@ -37,5 +37,6 @@ dependencies {
     kapt project(':router-processor')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation project(':biz-reading')
+    implementation project(':test-package')
     implementation project(':router-runtime')
 }

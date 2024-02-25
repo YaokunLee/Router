@@ -13,8 +13,6 @@ class RouterPlugin implements Plugin<Project> {
     // 实现apply方法，注入插件的逻辑
     void apply(Project project) {
 
-
-
         // 注册 Transform
         if (project.plugins.hasPlugin(AppPlugin)) {
             AppExtension appExtension = project.extensions.getByType(AppExtension)
