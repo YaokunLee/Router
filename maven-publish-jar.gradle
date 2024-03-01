@@ -1,6 +1,8 @@
 // 使用maven-publish插件中的发布功能
 apply plugin: 'maven-publish'
 
+println("maven-publish-jar gradle start!")
+
 // 读取工程的配置
 Properties gradleProperties = new Properties()
 gradleProperties.load(project.rootProject.file('gradle.properties').newDataInputStream())

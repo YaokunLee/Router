@@ -35,7 +35,7 @@ public class DestinationProcessor extends AbstractProcessor {
     public boolean process(Set<? extends TypeElement> set,
                            RoundEnvironment roundEnvironment) {
 
-
+        // 有什么作用？
         if (roundEnvironment.processingOver()) {
             return false;
         }

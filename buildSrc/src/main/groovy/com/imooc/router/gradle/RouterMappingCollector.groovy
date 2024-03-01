@@ -66,12 +66,6 @@ class RouterMappingCollector {
                 mappingClassNames.add(className)
             }
         }
-
     }
+
 }
-
-
-
-
-
-

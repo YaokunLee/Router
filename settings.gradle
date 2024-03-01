@@ -2,3 +2,27 @@ include ':app', ':biz-reading', ':router-runtime'
 include ':router-annotations'
 include ':router-processor'
 include ":test-package"
+
+include ":buildSrcTemp"
+
+gradle.addBuildListener(new BuildListener() {
+    @Override
+    void settingsEvaluated(Settings settings) {
+        println("[lifecycle] settingsEvaluated")
+    }
+
+    @Override
+    void projectsLoaded(Gradle gradle) {
+        println("[lifecycle] projectsLoaded")
+    }
+
+    @Override
+    void projectsEvaluated(Gradle gradle) {
+        println("[lifecycle] projectsEvaluated")
+    }
+
+    @Override
+    void buildFinished(BuildResult buildResult) {
+        println("[lifecycle] buildFinished")
+    }
+})

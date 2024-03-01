@@ -26,10 +26,8 @@ class RouterPlugin implements Plugin<Project> {
                 arg("root_project_dir", project.rootProject.projectDir.absolutePath)
             }
         }
-
         // 2. 实现旧的构建产物的自动清理
         project.clean.doFirst {
-
             // 删除 上一次构建生成的 router_mapping目录
             File routerMappingDir =
                     new File(project.rootProject.projectDir, "router_mapping")
@@ -37,15 +35,12 @@ class RouterPlugin implements Plugin<Project> {
             if (routerMappingDir.exists()) {
                 routerMappingDir.deleteDir()
             }
-
         }
 
         if (!project.plugins.hasPlugin(AppPlugin)) {
             return
         }
-
         println("I am from RouterPlugin, apply from ${project.name}")
-
         project.getExtensions().create("router", RouterExtension)
 
         project.afterEvaluate {
@@ -54,7 +49,6 @@ class RouterPlugin implements Plugin<Project> {
 
             println("用户设置的WIKI路径为 : ${extension.wikiDir}")
 
-
             // 3. 在javac任务 (compileDebugJavaWithJavac) 后，汇总生成文档
             project.tasks.findAll { task ->
                 task.name.startsWith('compile') &&
@@ -62,7 +56,6 @@ class RouterPlugin implements Plugin<Project> {
             }.each { task ->
 
                 task.doLast {
-
                     File routerMappingDir =
                             new File(project.rootProject.projectDir,
                                     "router_mapping")
@@ -70,7 +63,6 @@ class RouterPlugin implements Plugin<Project> {
                     if (!routerMappingDir.exists()) {
                         return
                     }
-
                     File[] allChildFiles = routerMappingDir.listFiles()
 
                     if (allChildFiles.length < 1) {
@@ -78,9 +70,7 @@ class RouterPlugin implements Plugin<Project> {
                     }
 
                     StringBuilder markdownBuilder = new StringBuilder()
-
                     markdownBuilder.append("# 页面文档\n\n")
-
 
                     allChildFiles.each { child ->
 
@@ -90,20 +80,14 @@ class RouterPlugin implements Plugin<Project> {
                             def content = jsonSlurper.parse(child)
 
                             content.each { innerContent ->
-
                                 def url = innerContent['url']
                                 def description = innerContent['description']
                                 def realPath = innerContent['realPath']
-
                                 markdownBuilder.append("## $description \n")
                                 markdownBuilder.append("- url: $url \n")
                                 markdownBuilder.append("- realPath: $realPath \n\n")
-
                             }
-
-
                         }
-
                     }
 
                     File wikiFileDir = new File(extension.wikiDir)
@@ -116,13 +100,10 @@ class RouterPlugin implements Plugin<Project> {
                         wikiFile.delete()
                     }
 
-
                     wikiFile.write(markdownBuilder.toString())
 
                 }
-
             }
         }
     }
-
 }
