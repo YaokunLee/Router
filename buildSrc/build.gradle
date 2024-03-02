@@ -31,7 +31,7 @@ publishing {
     publications {
         pluginMaven(MavenPublication) {
             // 设置groupId，通常为包名
-            groupId 'com.imooc.router'
+            groupId 'com.lyk.router'
             // 设置artifactId，为当前插件的名称
             artifactId 'router-gradle-plugin'
             // 设置插件的版本号

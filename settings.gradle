@@ -3,8 +3,6 @@ include ':router-annotations'
 include ':router-processor'
 include ":test-package"
 
-include ":buildSrcTemp"
-
 gradle.addBuildListener(new BuildListener() {
     @Override
     void settingsEvaluated(Settings settings) {

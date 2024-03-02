@@ -1,14 +1,60 @@
+# Intellij
 *.iml
-.gradle
+*.iws
+*.ipr
+.idea
+#.idea/workspace.xml
+#.idea/libraries
+#.idea/.name
+#.idea/compiler.xml
+#.idea/copyright/profiles_settings.xml
+#.idea/encodings.xml
+#.idea/misc.xml
+#.idea/modules.xml
+#.idea/vcs.xml
+#.idea/scopes/scope_settings.xml
+#.idea/tasks.xml
+#.idea/dictionaries
+#.idea/jsLibraryMappings.xml
+
+# Built app files
+*.apk
+
+# Files for the Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+**/bin/
+**/gen/
+**/out/
+
+# Local config file
 /local.properties
-.idea/
-/.idea/assetWizardSettings.xml
+
+# Log files
+*.log
+
+# Android Studio Navigation editor temp files
+.navigation/
+
+#Android Studio captures folder
+**/captures/
+
+# Gradle files
+.gradle
+**/build/
+
+# OSX files
 .DS_Store
-/build
-build/
-./build
-/captures
-/router-gradle-plugin
-.externalNativeBuild
-.cxx
-/router_mapping
+
+#NDK
+obj/
+
+# Keystore files
+*.jks
+
+# Others
+#**/.gitignore
